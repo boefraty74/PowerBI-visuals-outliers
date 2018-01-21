@@ -45,3 +45,36 @@ $RECYCLE.BIN/
 Network Trash Folder
 Temporary Items
 .apdisk
+
+# PBIVZ
+node_modules
+node_modules/*
+.tmp
+.tmp/*
+.tmp/drop/pbiviz.json
+.tmp/drop/pbiviz.json
+.tmp/drop/visual.js
+.tmp/precompile/src/visual.ts
+.tmp/drop/pbiviz.json
+.tmp/drop/status
+.tmp/drop/visual.js.map
+.tmp/drop/pbiviz.json
+.tmp/drop/pbiviz.json
+.tmp/drop/status
+.tmp/drop/pbiviz.json
+.tmp/drop/status
+out_files
+out_files/*
+out.html.tmp
+out.html.*
+out.html_files/*
+out.html_files
+dist
+dist/*
+.api
+.api/*
+*.log
+
+
+
+
