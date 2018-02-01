@@ -21,6 +21,7 @@
 	{
       "displayName": "Tooltips",
       "kind": "GroupingOrMeasure",
+      "description": "Fields to be used as mouseover tooltips",
       "name": "Tooltips"
     }
   ],
@@ -108,7 +109,7 @@
     },
     "mySettingsDet": {
       "displayName": "Detection",
-      "description": "Algorithm for outlier detection and parameters",
+      "description": "Algorithms for outlier detection and their parameters",
       "properties": {
           "thresholdType": {
         "displayName": "Outlier type",
@@ -152,7 +153,7 @@
               "value": "LOF"
             },
             {
-              "displayName": "cooks distance",
+              "displayName": "Cook's distance",
               "value": "cooks"
             }
           ]
@@ -327,22 +328,22 @@
             }
           },
   "lThresh": {
-        "displayName": "low threshold",
-        "description": "the lower limit", 
+        "displayName": "lower threshold",
+        "description": "the lower threshold", 
         "type": {
           "numeric": true
         }
       },
   "hThresh": {
-        "displayName": "high threshold",
-        "description": "the upper limit",
+        "displayName": "upper threshold",
+        "description": "the upper threshold",
         "type": {
           "numeric": true
         }
       },
   "cooksThresh": {
             "displayName": "threshold",
-            "description": "Cooks distance threshold. With respect to average distance",
+            "description": "Cooks distance threshold. With respect to average Cook's distance",
             "type": {
               "enumeration": [
                 {
@@ -419,7 +420,7 @@
         },
         "visualizeOutlierScore": {
           "displayName": "Visualize outlier's score",
-          "description": "Tranform value into outlier's score",
+          "description": "Visualize outlier's score instead of original data values",
           "type": {
             "bool": true
           }

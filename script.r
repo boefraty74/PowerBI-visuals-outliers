@@ -188,24 +188,24 @@ CheckInputForErrors = function(XX,YY,algName,params)
   E = NULL
   if(is.null(XX))
   {  
-    E[length(E) + 1] = "'Values' field should include at least one numeric column"
+    E[length(E) + 1] = "'Variables' field should include at least one numeric column"
     return(E)
   }
   if(nrow(XX) < params$minRows)
   {
-    E[length(E) + 1] = paste("'Values' table has less rows than required for analysis", as.character(params$minRows))
+    E[length(E) + 1] = paste("'Variables' table has less rows than required for analysis", as.character(params$minRows))
     return(E)
   }
   
   if(nrow(XX) < params$minRowsLOF && algName == "LOF")
   {
-    E[length(E) + 1] = paste("'Values' table has less rows than required for LOF analysis", as.character(params$minRowsLOF))
+    E[length(E) + 1] = paste("'Variables' table has less rows than required for LOF analysis", as.character(params$minRowsLOF))
     return(E)
   }
   
   if(is.null(YY)  && algName == "cooks")
   {  
-    E[length(E) + 1] = "'Independent Variable' field should include at least one numeric column"
+    E[length(E) + 1] = "'Independent Variables' field should include at least one numeric column"
     return(E)
   }
   

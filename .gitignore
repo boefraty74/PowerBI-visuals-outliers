@@ -74,6 +74,7 @@ dist/*
 .api
 .api/*
 *.log
+*EnglishReview*
 
 
 
