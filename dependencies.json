@@ -26,6 +26,11 @@
       "url": "https://cran.r-project.org/web/packages/XML/index.html"
     },
     {
+      "name": "DMwR",
+      "displayName": "DMwR: Functions and data for Data Mining with R",
+      "url": "https://cran.r-project.org/web/packages/DMwR/index.html"
+    },
+    {
       "name": "plotly",
       "displayName": "plotly: Create Interactive Web Graphics via plotly",
       "url": "https://cran.r-project.org/web/packages/plotly/index.html"

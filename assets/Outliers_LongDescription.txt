@@ -1,0 +1,36 @@
+Outlier is defined as a observation which stands far away from the most of other observations. Often an outlier is present due to the measurements error.  
+Sometimes, the outliers may be of particular interest, such as in the case of fraud detection, where outliers may indicate fraudulent activity. 
+Thus, outlier detection and analysis is an interesting and challenging data mining task
+ 
+ 
+There are many different methods to detect the outliers.  In this Custom Visual we implement five very popular ones: 
+
+1. 	Zscore is a standard deviation approach.  For more details: https://en.wikipedia.org/wiki/Standard_score
+2. 	Tukey’s method which use interquartile (IQR) range approach.  For more details: http://datapigtechnologies.com/blog/index.php/highlighting-outliers-in-your-data-with-the-tukey-method/
+3. 	LOF (Local Outlier Factor) method,  which computes the local density deviation of a given data point with respect to its neighbors. It considers as outlier samples that have a substantially lower density than their neighbors. For more details: https://en.wikipedia.org/wiki/Local_outlier_factor
+4. 	Cook's distance shows the influence of each observation on the fitted response values. An observation with Cook's distance larger than three times the mean Cook's distance might be an outlier. For more details: https://en.wikipedia.org/wiki/Cook%27s_distance
+5. 	Finally, manual method allows customer to define his own upper and lower thresholds to the original data
+
+In addition we support three ways to visualize outliers: 
+* Scatter plot 
+* Box plot
+* Density plot
+
+Per each plot type user may decide to visualize the original data or outlier scores. 
+
+NEW: support for tooltips on hover and selection.
+
+Here is how it works: 
+[#LI] Define required fields to be analyzed in plot. At last one numeric column of "Variables" for all detection methods and at least one numeric column for "Independent Variables" for Cook's detection method. [/#LI]
+[#LI] Avoid using multivariate inputs there possible, otherwise the results will not always be interpretable [#LI]
+[#LI] Optionally, define unique ID field (highly recommended to avoid duplicates removal)  [/#LI]
+[#LI] Optionally, provide the fields to be shown in tooltips upon hover [/#LI]
+[#LI] Select one of the detection methods, or use the default [/#LI]
+[#LI] Use  detection parameters such as thresholds to refine the characteristics of outliers [/#LI]
+[#LI] Use numerous formatting controls to refine the visual appearance of the plot [/#LI]
+
+
+R package dependencies (which are auto-installed): scales, reshape, ggplot2, plotly,  htmlwidgets, XML, DMwR
+Supports R versions: R 3.4.1, R 3.3.3, R 3.3.2, MRO 3.2.2 
+
+This is an open source visual. Get the code from GitHub: https://github.com/Microsoft/powerbi-visuals-outliers

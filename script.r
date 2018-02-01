@@ -248,14 +248,16 @@ TransformInputData = function(Values,ID, IndepVar, Tooltips, algName, toScale, p
     }
   }
   
-  
-  
+
   #check for errors
   Errors = CheckInputForErrors(XX, YY, algName, params)
   if(is.null(Errors))
   {
     if(!is.null(ID))
     {
+      if(is.factor(ID[,1]))
+        ID[,1] = as.character(ID[,1])
+      
       # sort all by ID 
       ord = sort(ID[,1], index.return = TRUE)$ix
       if(!is.null(XX))
@@ -264,6 +266,8 @@ TransformInputData = function(Values,ID, IndepVar, Tooltips, algName, toScale, p
         YY[,] = YY[ord,]
       if(!is.null(TT))
         TT[,] = TT[ord,]
+      
+      ID[,1] = ID[ord,1]
     }
     
     NXX = NYY = NTT = 0
@@ -307,14 +311,15 @@ TransformInputData = function(Values,ID, IndepVar, Tooltips, algName, toScale, p
       
     }
   }
+  
   #result in list
-  res = list(XX= XX, YY = YY, TT = TT, Errors = Errors)
+  res = list(XX= XX, YY = YY, TT = TT, Errors = Errors, Values = XX,ID = ID, IndepVar = YY, Tooltips = TT)
   return(res) 
   
 }
 
 # define X/Y data and labels wrt input data and parameters
-TransformVisualizationData = function (DFX,DFY, plotType,algName,params,outlier_score)
+TransformVisualizationData = function (DFX,DFY, plotType,algName,params,outlier_score, toScale = TRUE)
 {
   
   res = NULL
@@ -440,7 +445,7 @@ TransformVisualizationData = function (DFX,DFY, plotType,algName,params,outlier_
       #scatter + NCX > 1 --> VXX is PC1(DFX)
       if(length(intersect(plotType, c('scatter'))) && NCX > 1)
       {
-        temp = pcaColumns(DFX, toscale = TRUE)
+        temp = pcaColumns(DFX, toscale = toScale)#TODO toScale
         colnames(temp)[c(1, 2)] = c("PC1_X", "PC2_X")
         VXX = temp[, 1]
         VYY_name = paste("PC1(",paste(colnames(DFX), sep = "", collapse = ","),")",sep ="")
@@ -593,6 +598,15 @@ XX = rrr$XX
 YY = rrr$YY
 TT = rrr$TT
 
+Values = rrr$Values
+ID = rrr$ID
+IndepVar = rrr$IndepVar
+Tooltips = rrr$Tooltips
+
+
+
+
+
 #if errors skip all and show errors
 if(!is.null(rrr$Errors))
 {
@@ -606,7 +620,7 @@ if(!is.null(rrr$Errors))
   myOutliers = rrr_outliers$myOutliers
   outliers_scores = rrr_outliers$outlier_scores
   
-  rrr2 = TransformVisualizationData(XX,YY, plotType, algName, params, outliers_scores)
+  rrr2 = TransformVisualizationData(XX,YY, plotType, algName, params, outliers_scores, toScale = toScale)
   data4viz = data.frame(X = rrr2$VYY, Y = rrr2$VXX)
   
   NP = nrow(XX)   
@@ -623,6 +637,7 @@ if(!is.null(rrr$Errors))
     myOutliers = myOutliers[drawPoints]
     pointsCol = pointsCol[drawPoints]
     pointsSize = pointsSize[drawPoints]
+    outliers_scores = outliers_scores[drawPoints]
     
   }else
     drawPoints = SparsifyScatter(data4viz,minMaxPoints = c(Inf, Inf))
@@ -711,6 +726,7 @@ if(USEPLOTLY)
     ddd = Values
     if(!is.null(IndepVar)) ddd = cbind(ddd,IndepVar)
     if(!is.null(Tooltips)) ddd = cbind(ddd,Tooltips)
+    ddd = cbind(ddd,score = outliers_scores)
     ntt = generateNiceTooltips(ddd)
     
     layerScatterInScatter = 1 # first layer is scatter in scatter 

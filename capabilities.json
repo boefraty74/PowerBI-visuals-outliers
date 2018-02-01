@@ -7,7 +7,7 @@
       "name": "ID"
     },
 	{
-      "displayName": "Values",
+      "displayName": "Variables",
       "description": "Only numerical fields allowed. Two or more columns are transformed to 1st principle component (except for LOF method)",
       "kind": "GroupingOrMeasure",
       "name": "Values"
@@ -38,7 +38,7 @@
             "max": 10
           },
 		   "Tooltips": {
-            "max": 3
+            "max": 5
           }
         }
       ],
